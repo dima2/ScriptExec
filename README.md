@@ -25,8 +25,8 @@ Web service supports two methods:
   * `id`: numeric id of the script
   * `status`: status of the script
 
-* GET /eval/{id}
-  Parameter {id} is identifier of the script
+* GET /eval/`id`
+  Parameter `id` is identifier of the script
 
     Response (JSON):
   * `id`: numeric id of the script
@@ -52,25 +52,30 @@ Additional language support can be added by implementing `net.dmi3.scriptexec.in
 
 Because ScriptExec was created for demo purposes following functionality wasn't implemented:
 
-* Script maximum count in memory
+* Script maximum count in memory limitation. Can be simply implemented by using ehcache
 * User roles limitation (i.e. restriction of deletion of files etc)
 
 ##Tests
 
 To run unit tests:
+
     mvn test
 
 To run integration tests (note that it OS specific, and requires Linux to run):
+
     mvn verify
 
 ##Compilation
 
 To compile application and run application:
+
     mvn clean compile exec:java
 
 To create jar:
+
     mvn clean compile assembly:single
 
 To run jar use (8080 is optional parameter to define port of embeded server):     
+
     java -jar ScriptExec.jar 8080 
 

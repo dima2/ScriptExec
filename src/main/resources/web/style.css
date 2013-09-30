@@ -1,0 +1,19 @@
+body { 
+  padding:5px 40px;
+}
+
+#script, #output {
+  font-family: Consolas,"Liberation Mono",Courier,monospace;
+}
+
+.btn {
+  float: right;
+}
+
+.idh, .picker {
+    float: left;
+}
+
+.clr {
+    clear:both;
+}
