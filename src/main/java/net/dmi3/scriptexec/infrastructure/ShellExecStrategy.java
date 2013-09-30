@@ -27,6 +27,14 @@ public class ShellExecStrategy implements ExecStrategy {
 
     @Override
     public List<String> getCmd() {
-        return Arrays.asList(scriptDTO.script.split("\\s*\\&\\&\\s*"));
+        if (isWindows()) {
+            return Arrays.asList("cmd.exe /c " + scriptDTO.script);
+        } else {
+            return Arrays.asList(scriptDTO.script.split("\\s*\\&\\&\\s*"));
+        }
+    }
+
+    public boolean isWindows() {
+        return System.getProperty("os.name").startsWith("Windows");
     }
 }

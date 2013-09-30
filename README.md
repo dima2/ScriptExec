@@ -4,6 +4,9 @@
 
 ScriptExec is demo application which allows to store and execute Java code, Python and Shell scripts. 
 
+##Prerequisites
+To test full functionality Java and Python should be inslalled  (and correctly set in PATH enviroment in windows). For compilation and test maven2 is required.
+
 ##UI
 
 Web service simple test can be done via UI. Run application & navigate to <http://localhost:8080>
