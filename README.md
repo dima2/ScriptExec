@@ -4,20 +4,21 @@
 
 ScriptExec is demo application which allows to store and execute Java code, Python and Shell scripts. 
 
-#UI
+##UI
 
 Web service simple test can be done via UI. Run application & navigate to <http://localhost:8080>
 
 * [Load]: loads script with id set in `id` field
-* [Evaluate]: submits script for execution and checks for result after 1 sec. If script runs longer than 1 sec, result can be checked by pressing [Load] button.
-* Other fields are pretty much self-explanatory 
+* [Evaluate]: submits script for execution and checks for result after 1 sec. If script runs longer than 1 sec, result can be checked by pressing [Load] button. If script execution takes longer than 10 sec, it's interrupted by timeout.
+* Other fields much self-explanatory 
 
 ##REST API
 
 Web service supports two methods: 
 
 * POST /eval
-  Request {JSON}
+  Submits script for execution and returns uniq indentifier
+  Request {JSON}:
   * `lang`: `JAVA`,`SHELL`,`PYTHON` - case sensitive
   * `script`: Script for execution
 
@@ -26,7 +27,7 @@ Web service supports two methods:
   * `status`: status of the script
 
 * GET /eval/`id`
-  Parameter `id` is identifier of the script
+  Returns script with selected `id`
 
     Response (JSON):
   * `id`: numeric id of the script
@@ -44,7 +45,7 @@ Web service supports two methods:
 
 ##Customization
 
-Settings are stored in `Settings` class.
+Settings are stored in `net.dmi3.scriptexec.config.Settings` class.
 
 Additional language support can be added by implementing `net.dmi3.scriptexec.infrastructure.ExecStrategy` interface and registering it in `net.dmi3.scriptexec.infrastructure.Lang` class.
 
@@ -52,8 +53,8 @@ Additional language support can be added by implementing `net.dmi3.scriptexec.in
 
 Because ScriptExec was created for demo purposes following functionality wasn't implemented:
 
-* Script maximum count in memory limitation. Can be simply implemented by using ehcache
-* User roles limitation (i.e. restriction of deletion of files etc)
+* Script maximum count in memory limitation. Can be simply acheved by using ehcache in `net.dmi3.scriptexec.service.Keeper` class.
+* User roles limitation (i.e. restriction of files deletion etc).
 
 ##Tests
 
@@ -75,7 +76,7 @@ To create jar:
 
     mvn clean compile assembly:single
 
-To run jar use (8080 is optional parameter to define port of embeded server):     
+To run jar (8080 is optional parameter to define port of embeded server):     
 
     java -jar ScriptExec.jar 8080 
 
