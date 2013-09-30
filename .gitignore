@@ -4,3 +4,7 @@
 *.jar
 *.war
 *.ear
+*.*!sync
+*.iml
+.idea
+.target
