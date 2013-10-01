@@ -9,7 +9,9 @@ function update()
         $("#lang").val(response.lang);
         $("#script").val(response.script);
         $("#status").html(response.status);
-        $("#output").html(response.result);
+        if (response.result) {
+            $("#output").html(response.result.replace("\n","<br/>", 'g'));
+        }
     });
 }
 

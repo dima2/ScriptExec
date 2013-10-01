@@ -87,7 +87,7 @@ public class AsyncOsExcecutor implements net.dmi3.scriptexec.service.Excecutor, 
                     process.waitFor();
 
                     if (process.exitValue() == 0) {
-                        scriptCopy.result = scriptCopy.result + IOUtils.toString(process.getInputStream()) + "\n";
+                        scriptCopy.result = scriptCopy.result + IOUtils.toString(process.getInputStream());
                         scriptCopy.status = Status.EXCECUTED;
                     } else {
                         scriptCopy.result = IOUtils.toString(process.getErrorStream());

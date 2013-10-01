@@ -71,6 +71,25 @@ public class FunctionalityIT implements Settings {
     }
 
     @Test
+    public void testMultiLine() throws Exception {
+        PostMethod post = new PostMethod("http://localhost:" + PORT + "/eval");
+        post.setRequestEntity(new StringRequestEntity("{'lang':'SHELL','script':'echo 1 && echo 2'}", "application/json", "utf-8"));
+        client.executeMethod(post);
+
+
+        Gson gson = new Gson();
+
+
+        GetMethod get = new GetMethod("http://localhost:" + PORT + "/eval/0");
+        client.executeMethod(get);
+
+        ScriptDTO scriptDTO = gson.fromJson(get.getResponseBodyAsString(), ScriptDTO.class);
+        assertNotNull(scriptDTO);
+        assertEquals("1\n2", scriptDTO.result.trim());
+
+    }
+
+    @Test
     public void testPython() throws Exception {
         int fileCnt = new File(COMPILATION_DIR).list().length;
         PostMethod post = new PostMethod("http://localhost:" + PORT + "/eval");

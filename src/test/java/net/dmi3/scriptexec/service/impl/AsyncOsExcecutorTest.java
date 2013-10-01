@@ -76,7 +76,7 @@ public class AsyncOsExcecutorTest implements Settings {
         //Check
         Collection<Object> result = new ArrayList<Object>(keeper.storage.values());
         for (String script : scripts) {
-            assertThat(result, hasItem(hasProperty("result", is(script+"\n"))));
+            assertThat(result, hasItem(hasProperty("result", is(script))));
         }
     }
 
