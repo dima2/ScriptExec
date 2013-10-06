@@ -33,6 +33,7 @@ public class FunctionalityIT implements Settings {
 
     @Before
     public void before() {
+        new File(COMPILATION_DIR).mkdirs();
         try {
             server = EntryPoint.initServer(new String[]{PORT});
         } catch (Exception e) {

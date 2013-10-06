@@ -34,11 +34,12 @@ public class AsyncOsExcecutor implements net.dmi3.scriptexec.service.Excecutor, 
     protected Runtime runtime = Runtime.getRuntime();
 
     protected void writeFile(ExcecRequiresFiles execStrategy) throws IOException {
-        File file = new File(COMPILATION_DIR);
-        if (file.exists()) {
-            file.mkdirs();
+        File file = new File(execStrategy.getFileName());
+        File dir = file.getParentFile();
+        if (!dir.exists()) {
+            dir.mkdirs();
         }
-        IOUtils.write(execStrategy.getFile(), new FileOutputStream(new File(execStrategy.getFileName())));
+        IOUtils.write(execStrategy.getFile(), new FileOutputStream(file));
     }
 
     protected void removeFiles(ExcecRequiresFiles execStrategy) {
